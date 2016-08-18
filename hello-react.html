@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+  </head>
+  <body>
+  <script>
+    var HelloReact = React.createClass({
+    render: function() {
+    return React.DOM.h1(null, 'Hello React');
+    }
+    });
+
+    var HelloFramgia = React.createClass({
+    render: function(){
+    return React.DOM.h1(null, "Framgia Bangladesh");  
+    }
+  });
+  ReactDOM.render(React.createElement(HelloReact), document.body);
+
+  </script>
+ 
+  </body>
+</html>

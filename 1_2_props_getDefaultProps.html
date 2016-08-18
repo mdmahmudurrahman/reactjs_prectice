@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="view">
+    </div>
+    <script type="text/babel">
+      var MyDefaultProps = React.createClass({
+        getDefaultProps: function(){
+          return {
+            message: "I am from default props"
+          };
+        },
+        render: function(){
+          return (
+            <div>
+              <h2>This is a getDefaultProps example</h2>
+              <div>{this.props.message}</div>
+            </div>  
+            );
+        }
+      });
+      ReactDOM.render(<MyDefaultProps />, document.body);
+    </script>
+  </body>
+</html>
