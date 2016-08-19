@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="view">
+    </div>
+    <script type="text/babel">
+      var HelloMessage = React.createClass({
+        render: function(){
+          return <div>{this.props.message}</div>;
+        }
+      });
+
+      var TextBox = React.createClass({
+        getInitialState: function(){
+          return { isEditing: false }
+        },
+
+        updateTextBoxMode: function(){
+          this.props.update(this.refs.messageTextBox.value);  
+          this.setState({
+            isEditing: false
+          })
+        },
+
+        edit: function(){
+          this.setState({
+            isEditing: true
+          });
+        },
+        render: function(){
+          return (
+            <div>
+               {this.props.label}<br/>
+               <input type="text" ref="messageTextBox" disabled={!this.state.isEditing} />
+               {
+                this.state.isEditing ?
+                <button onClick={this.updateTextBoxMode}>Update</button> 
+                :
+                <button onClick={this.edit}>Edit</button>
+               }
+            </div> 
+            );
+        }
+      });
+
+      var HelloReact = React.createClass({
+        getInitialState: function(){
+          return {firstName: "", lastName: ""}
+        },
+        update_name: function(key, value){
+          var newState = {};
+          newState[key] = value;
+          this.setState(newState);
+        },
+        render: function(){
+          return (
+              <div>
+                <HelloMessage message={"Hello " + this.state.firstName + " " + this.state.lastName}>
+                </HelloMessage>
+                <TextBox label="First Name" update={this.update_name.bind(null, "firstName")}></TextBox>
+                <TextBox label="Last Name" update={this.update_name.bind(null, "lastName")}></TextBox>
+              </div>
+            );
+        }
+      });
+
+      ReactDOM.render(<HelloReact/>, document.getElementById('view'));
+    </script>
+  </body>
+</html>
